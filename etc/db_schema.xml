@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_SizeChart
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+-->
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="mageinic_size_chart" resource="default" engine="innodb" comment="Size Chart table">
+        <column xsi:type="int" name="sizechart_id" padding="10" unsigned="false" nullable="false" identity="true"
+                comment="Size Chart Id"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Title"/>
+        <column xsi:type="varchar" name="sizes" nullable="false" length="255" comment="Sizes"/>
+        <column xsi:type="varchar" name="bust" nullable="false" length="255" comment="Bust"/>
+        <column xsi:type="varchar" name="waist" nullable="false" length="255" comment="Waist"/>
+        <column xsi:type="varchar" name="hip" nullable="false" length="255" comment="Hip"/>
+        <column xsi:type="mediumtext" name="content" nullable="true" comment="SizeChart Content"/>
+        <column xsi:type="int" name="status" padding="10" unsigned="true" nullable="true"
+                comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="sizechart_id"/>
+        </constraint>
+        <index referenceId="MAGEINIC_SIZECHART_TITLE" indexType="fulltext">
+            <column name="title"/>
+        </index>
+    </table>
+    <table name="mageinic_size_chart_store" resource="default" engine="innodb"
+           comment="SizeChart To Store Linkage Table">
+        <column xsi:type="int" name="sizechart_id" padding="10" unsigned="false" nullable="false" identity="false"
+                comment="Size chart Id"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="sizechart_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SIZE_CHART_STORE_SIZECHART_ID_SIZE_CHART_SIZECHART_ID"
+                    table="mageinic_size_chart_store" column="sizechart_id"
+                    referenceTable="mageinic_size_chart" referenceColumn="sizechart_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SIZECHART_STORE_STORE_ID_STORE_STORE_ID"
+                    table="mageinic_size_chart_store" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="SIZECHART_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

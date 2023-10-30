@@ -1,0 +1,36 @@
+{
+    "mageinic_size_chart": {
+        "column": {
+            "sizechart_id": true,
+            "title": true,
+            "sizes": true,
+            "bust": true,
+            "waist": true,
+            "hip": true,
+            "content": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "MAGEINIC_SIZE_CHART_TITLE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "mageinic_size_chart_store": {
+        "column": {
+            "sizechart_id": true,
+            "store_id": true
+        },
+        "index": {
+            "MAGEINIC_SIZE_CHART_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_5400E6709B2A1248FDCD51A0200A3D21": true,
+            "MAGEINIC_SIZE_CHART_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}

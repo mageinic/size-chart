@@ -1,0 +1,58 @@
+Back,Back
+"Delete SizeChart","Delete SizeChart"
+"Are you sure you want to do this?","Are you sure you want to do this?"
+"Save and Continue Edit","Save and Continue Edit"
+"Save SizeChart","Save SizeChart"
+SizeChart,SizeChart
+"Manage SizeChart","Manage SizeChart"
+"You deleted the SizeChart","You deleted the SizeChart"
+"We can't find a SizeChart to delete.","We can't find a SizeChart to delete."
+"This SizeChart no longer exists.","This SizeChart no longer exists."
+"Edit SizeChart","Edit SizeChart"
+"New SizeChart","New SizeChart"
+"Please correct the data sent.","Please correct the data sent."
+"A total of %1 SizeChart(s) were deleted.","A total of %1 SizeChart(s) were deleted."
+"A total of %1 record(s) have been disabled.","A total of %1 record(s) have been disabled."
+"A total of %1 record(s) have been enabled.","A total of %1 record(s) have been enabled."
+"SizeChart Successfully saved","SizeChart Successfully saved"
+"Something went wrong while saving the SizeChart","Something went wrong while saving the SizeChart"
+Enabled,Enabled
+Disabled,Disabled
+"The SizeChart with the ""%1"" ID does't exist.","The SizeChart with the ""%1"" ID does't exist."
+"-- Please Select --","-- Please Select --"
+Edit,Edit
+Delete,Delete
+"Are you sure you wan't to delete a record?","Are you sure you wan't to delete a record?"
+"All Store Views","All Store Views"
+"Find your size for this dress:","Find your size for this dress:"
+Bust,Bust
+Waist,Waist
+Hips,Hips
+"Convert to Centimeters","Convert to Centimeters"
+"Based on your measurements we recommend ordering size","Based on your measurements we recommend ordering size"
+Size,Size
+"*The following size recommendation is based on the
+                            current measurements.The final responsibility on choosing a size is the customers.","*The following size recommendation is based on the
+                            current measurements.The final responsibility on choosing a size is the customers."
+View,View
+Save,Save
+"SizeChart Configuration","SizeChart Configuration"
+"Size Chart","Size Chart"
+General,General
+Enable,Enable
+"Enable frontend","Enable frontend"
+"General Information","General Information"
+Title,Title
+"What is this?","What is this?"
+"Store View","Store View"
+Sizes,Sizes
+Hip,Hip
+"Add New SizeChart","Add New SizeChart"
+Select...,Select...
+Status,Status
+"Are you sure you want to delete selected items?","Are you sure you want to delete selected items?"
+"Delete items","Delete items"
+Disable,Disable
+Id,Id
+"Created Date","Created Date"
+"Updated Date","Updated Date"

@@ -1,0 +1,85 @@
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_SizeChart
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+
+.sizechartpopup .left-column {
+    box-sizing: border-box;
+    float: left;
+    padding-right: 1%;
+    width: 50%;
+}
+.sizechartpopup .right-column {
+    box-sizing: border-box;
+    float: right;
+    padding-left: 1%;
+    width: 50%;
+}
+#sizechart .results {
+    background-color: #ffffaa;
+    padding: 5px;
+}
+.sizechartpopup table > thead > tr > th,
+.sizechartpopup table > tbody > tr > th,
+.sizechartpopup table > tfoot > tr > th,
+.sizechartpopup table > thead > tr > td,
+.sizechartpopup table > tbody > tr > td,
+.sizechartpopup table > tfoot > tr > td {
+    padding: 2px;
+    text-align: center;
+}
+
+.sizechartpopup tr:nth-child(even) td {
+    background-color: #f5f5f5;
+}
+.sizechartpopup tr:hover td {
+    background-color: #ffffaa;
+}
+#chart_values td.current {
+    font-size: 16px;
+    font-weight: bold;
+}
+#sizechart #chart_values tr.recommended-size td {
+    background-color: #a1a1a1;
+}
+
+@media (max-width: 900px) {
+    .sizechartpopup .left-column {
+        width: 100%;
+        float: none;
+    }
+    .sizechartpopup .right-column {
+        width: 100%;
+        float: none;
+    }
+}
+@media (max-width: 768px) {
+    .modal-popup .modal-inner-wrap {
+        width: 95%;
+    }
+}
+@media (max-width: 360px) {
+    .modal-popup .modal-content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

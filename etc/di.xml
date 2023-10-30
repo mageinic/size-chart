@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_SizeChart
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MageINIC\SizeChart\Api\Data\SizeChartInterface"
+                type="MageINIC\SizeChart\Model\SizeChart"/>
+    <preference for="MageINIC\SizeChart\Api\SizeChartRepositoryInterface"
+                type="MageINIC\SizeChart\Model\SizeChartRepository"/>
+    <preference for="MageINIC\SizeChart\Api\Data\SizeChartSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mageinic_sizechart_listing_grid_data_source" xsi:type="string">
+                    MageINIC\SizeChart\Model\ResourceModel\SizeChart\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageINIC\SizeChart\Model\ResourceModel\SizeChart\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mageinic_size_chart</argument>
+            <argument name="eventPrefix" xsi:type="string">mageinic_size_chart_collection</argument>
+            <argument name="eventObject" xsi:type="string">sizechart_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MageINIC\SizeChart\Model\ResourceModel\SizeChart
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageINIC\SizeChart\Model\SizeChartRepository">
+        <arguments>
+            <argument name="collectionProcessor"
+                      xsi:type="object">MageINIC\SizeChart\Model\Api\SearchCriteria\CollectionProcessor
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="MageINIC\SizeChart\Model\Api\SearchCriteria\CollectionProcessor"
+                 type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">
+                    MageINIC\SizeChart\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor
+                </item>
+                <item name="sorting" xsi:type="object">
+                    Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor
+                </item>
+                <item name="pagination" xsi:type="object">
+                    Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="MageINIC\SizeChart\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor"
+                 type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor">
+        <arguments>
+            <argument name="customFilters" xsi:type="array">
+                <item name="store_id" xsi:type="object">
+                    MageINIC\SizeChart\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor\StoreFilter
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="MageINIC\SizeChart\Api\Data\SizeChartInterface" xsi:type="string">
+                    MageINIC\SizeChart\Api\SizeChartRepositoryInterface
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="MageINIC\SizeChart\Api\Data\SizeChartInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">mageinic_size_chart</item>
+                    <item name="identifierField" xsi:type="string">sizechart_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="MageINIC\SizeChart\Api\Data\SizeChartInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="storeReader" xsi:type="string">
+                            MageINIC\SizeChart\Model\ResourceModel\SizeChart\Relation\Store\ReadHandler
+                        </item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="storeCreator" xsi:type="string">
+                            MageINIC\SizeChart\Model\ResourceModel\SizeChart\Relation\Store\SaveHandler
+                        </item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="storeUpdater" xsi:type="string">
+                            MageINIC\SizeChart\Model\ResourceModel\SizeChart\Relation\Store\SaveHandler
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="MageINIC\SizeChart\Api\Data\SizeChartInterface" xsi:type="string">
+                    Magento\Framework\EntityManager\AbstractModelHydrator
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Api\ProductRepositoryInterface">
+        <plugin name="product_sku_size_chart" type="MageINIC\SizeChart\Plugin\SizeChart"
+                sortOrder="20"/>
+    </type>
+</config>

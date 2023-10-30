@@ -1,0 +1,128 @@
+<?php
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_SizeChart
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+
+use Magento\Framework\Escaper;
+use MageINIC\SizeChart\Block\SizeChart\SizeChartPopup;
+
+/**
+ * @var $block SizeChartPopup;
+ * @var $escaper Escaper;
+ */
+
+$sizechartcollection = $block->getSizeChartDetails();
+foreach ($sizechartcollection as $collection): ?>
+    <?php if ($collection->getStatus()): ?>
+        <div id="sizechartpopup" class="sizechartpopup">
+            <div id="sizechart">
+                <div class="left-column">
+                    <div class="size">
+                        <div class="measurements">
+                            <p>
+                                <?= $escaper->escapeHtml(__('Find your size for this dress:')) ?>
+                            </p>
+                            <form name="sizechart_form" id="sizechart_form">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label for="bust"><?= $escaper->escapeHtml(__('Bust')) ?></label>
+                                                <br>
+                                                <input type="text" id="bust" size="3" value="" name="bust">
+                                            </td>
+                                            <td>
+                                                <label for="waist"><?= $escaper->escapeHtml(__('Waist')) ?></label>
+                                                <br>
+                                                <input type="text" id="waist" size="3" value="" name="waist">
+                                            </td>
+                                            <td>
+                                                <label for="hip"><?= $escaper->escapeHtml(__('Hips')) ?></label>
+                                                <br>
+                                                <input type="text" id="hip" size="3" value="" name="hip">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                            <p>
+                                <a id="convertsizeunits" rel="nofollow" href="javascript:void(0);">
+                                    <?= $escaper->escapeHtml(__('Convert to Centimeters')) ?>
+                                </a>
+                            </p>
+                        </div>
+                        <div class="results">
+                            <p>
+                                <?= $escaper->escapeHtml(__('Based on your measurements we recommend ordering size')) ?>
+                                <strong id="size-value"></strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="chart">
+                        <table class="data-grid">
+                            <thead style="background-color:grey" id="chart_head">
+                                <tr>
+                                    <th><?= $escaper->escapeHtml(__('Size')) ?></th>
+                                    <th><?= $escaper->escapeHtml(__('Bust')) ?></th>
+                                    <th><?= $escaper->escapeHtml(__('Waist')) ?></th>
+                                    <th><?= $escaper->escapeHtml(__('Hips')) ?></th>
+                                </tr>
+                            </thead>
+                            <tbody id="chart_values">
+                                <?php
+                                $data = $block->getColumns();
+                                $columnsNo = (count($data[0]) - 1);
+                                $html = '';
+                                for ($r = 0; $r <= $columnsNo; $r++) {
+                                    $html .= '<tr>';
+                                    for ($c = 0; $c <= 3; $c++) {
+                                        $html .= '<td>' . $data[$c][$r] . '</td>';
+                                    }
+                                    $html .= '</tr>';
+                                }
+                                /* @noEscape */ echo $html;
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="notes">
+                        <p>
+                            <?= $escaper->escapeHtml(__('*The following size recommendation is based on the
+                            current measurements.The final responsibility on choosing a size is the customers.')) ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          <div class="right-column">
+              <img src="<?= $escaper->escapeUrl($block->getViewFileUrl(
+                  'MageINIC_SizeChart::images/sizechart-siluete.jpg'
+              )); ?>" alt="" width="" height=""/>
+              <?php if (!empty($collection['content'])): ?>
+                  <div class="country">
+                      <?= /* @noEscape */ $block->processContent($collection['content']); ?>
+                  </div>
+              <?php endif; ?>
+          </div>
+        </div>
+    <?php endif; ?>
+<?php endforeach; ?>
