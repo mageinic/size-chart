@@ -34,13 +34,13 @@
     <body>
         <referenceContainer name="product.info.main">
             <block class="MageINIC\SizeChart\Block\SizeChart\SizeChartLink"
-                   name="mageinic"
+                   name="mageinic_sizechart_popup"
                    before="product.info"
                    template="MageINIC_SizeChart::href-link.phtml" />
         </referenceContainer>
         <referenceContainer name="before.body.end">
             <block class="MageINIC\SizeChart\Block\SizeChart\SizeChartPopup"
-                   name="mageinic_sizechart"
+                   name="mageinic_sizechart_footer"
                    template="MageINIC_SizeChart::size-chart.phtml"/>
         </referenceContainer>
     </body>

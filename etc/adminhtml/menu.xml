@@ -29,7 +29,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="MageINIC_SizeChart::sizechart"
-             title="SizeChart"
+             title="Size Chart"
              module="MageINIC_SizeChart"
              sortOrder="30"
              parent="MageINIC_Core::core"
